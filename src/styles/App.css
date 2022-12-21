@@ -96,11 +96,6 @@ header {
   background: linear-gradient(66deg, rgb(184, 184, 184) 0%, rgb(255, 255, 255) 43%, rgb(255, 255, 255) 100%);
 }
 
-.menuRelative {
-  -webkit-animation: opc 0.4s ease;
-          animation: opc 0.4s ease;
-}
-
 .menuFixed {
   position: fixed;
   background-color: #131b23;

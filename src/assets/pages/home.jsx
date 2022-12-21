@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import BgHeader from "../components/bg-header";
 import {
   RiLinkedinBoxFill,
@@ -10,12 +10,12 @@ import { MdDesignServices } from "react-icons/md";
 
 import Avatar from "../images/avatar-min.png";
 const Home = () => {
-    useEffect(() => {
-        ScrollReveal().reveal('.about-area');
+  useEffect(() => {
+    ScrollReveal().reveal(".about-area");
 
-        ScrollReveal().reveal('.content-header', { delay: 2000 });
-    }, []);
-    const [pageY, setPageY] = useState(0);
+    ScrollReveal().reveal(".content-header", { delay: 2000 });
+  }, []);
+  const [pageY, setPageY] = useState(0);
   const [scrollTop, SetScrollTop] = useState(false);
 
   document.addEventListener("scroll", () => {
@@ -29,7 +29,11 @@ const Home = () => {
     <div>
       <header className=" w-full min-h-screen gradient relative flex flex-col items-center pb-10">
         <BgHeader />
-        <nav className={`navHeader flex w-full min-h-[36px] text-white items-center p-4 sm:p-4 justify-center z-[2] ${scrollTop ?'menuFixed' : `menuRelative`}`}>
+        <nav
+          className={`navHeader flex w-full min-h-[36px] text-white items-center p-4 sm:p-4 justify-center z-[2] ${
+            scrollTop ? "menuFixed" : `menuRelative`
+          }`}
+        >
           <div className="container flex w-full max-w-5xl justify-between">
             <div className="logo w-10 h-10 text-[#131b23] bg-white rounded-full flex justify-center items-center font-bold">
               VR
@@ -87,8 +91,12 @@ const Home = () => {
             </div>
           </div>
         </nav>
-        <div className={`content-header flex flex-col justify-center items-center sm:mt-9 gap-2 z-[2] relative ${scrollTop ?'top-14 sm:pb-24 ' : ``}`}>
-          <div className="w-full h-full absolute top-0 left-0 hidden sm:flex">
+        <div
+          className={`content-header flex flex-col justify-center items-center sm:mt-9 gap-2 z-[100] relative ${
+            scrollTop ? "top-14 sm:pb-24 " : ``
+          }`}
+        >
+          <div className="w-full h-full absolute top-0 left-0 hidden -z-10 sm:flex">
             <div className="">
               <BsCursorFill className="text-white absolute top-24 right-28 z-20 " />
               <span className="text-white px-3 py-1 rounded-md absolute top-20 right-4 z-10 bg-[#1b2631]">
@@ -122,10 +130,11 @@ const Home = () => {
             </p>
 
             <a
-              href="#"
+              href="https://cdn.discordapp.com/attachments/524765307081064452/1055159207340552212/Nome_Marcos_Vinicios_Ragazzi_Araujo_Data_de_Nascimento_24022001_Naturalidade_Nova_Iguacu_RJ_-_Brasil_Disponibilidade_Periodo_Integral_Contato_21_98337-3765_O_Email_viniciosragazzzigmail.com_LinkedIn_viniciosra.pdf"
               className="button px-4 py-2 self-center rounded-md mt-4 text-xs sm:text-sm hover:bg-[#1b2631] cursor-pointer hover:text-white transition-all font-semibold bg-white max-w-[200px]"
+              download
             >
-              Fale comigo
+              Download CV
             </a>
           </div>
         </div>
