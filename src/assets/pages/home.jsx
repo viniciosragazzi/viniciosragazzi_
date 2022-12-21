@@ -45,7 +45,7 @@ const Home = () => {
             </div>
             <div
               className={`menu  justify-center items-center flex-1 gap-6 sm:gap-0   flex flex-col  sm:flex-row  h-screen sm:h-full fixed sm:relative top-0 left-0 w-full bg-[#1B2631] sm:bg-transparent z-[900] ${
-                closeMenu ? "translate-y-[-100vh]" : "translate-y-[0]"
+                closeMenu ? "translate-y-[-100vh] sm:translate-y-[0]" : "translate-y-[0]"
               } transition-transform`}
             >
               <AiOutlineClose
