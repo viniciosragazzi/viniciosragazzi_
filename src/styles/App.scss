@@ -12,6 +12,7 @@ html,
 body {
     height: 100%;
     font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
 }
 
 header {
@@ -87,18 +88,59 @@ header {
         rgba(255, 255, 255, 1) 100%
     );
 }
+.menuRelative {
+    animation: opc 0.4s ease;
+}
+.menuFixed {
+    position: fixed;
+    background-color: #131b23;
+    z-index: 999;
+    animation: opc 0.4s ease;
+}
+
+.content-header {
+    animation: reveal 0.5s ease forwards;
+}
 
 @media screen and (max-width: 1200px) {
-    .about-area {
+    .about-area .container {
         flex-direction: column;
     }
 }
 
 @media screen and (max-width: 815px) {
-  
 }
 @media screen and (max-width: 360px) {
     .card {
         max-width: 260px;
+    }
+}
+
+@keyframes opc {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(50vh);
+    }
+    30% {
+        opacity: 0.2;
+    }
+
+    60% {
+        opacity: 0.5;
+    }
+    80% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

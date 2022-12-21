@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import BgHeader from "../components/bg-header";
 import {
   RiLinkedinBoxFill,
@@ -10,11 +10,26 @@ import { MdDesignServices } from "react-icons/md";
 
 import Avatar from "../images/avatar-min.png";
 const Home = () => {
+    useEffect(() => {
+        ScrollReveal().reveal('.about-area');
+
+        ScrollReveal().reveal('.content-header', { delay: 2000 });
+    }, []);
+    const [pageY, setPageY] = useState(0);
+  const [scrollTop, SetScrollTop] = useState(false);
+
+  document.addEventListener("scroll", () => {
+    if (window.scrollY >= 100) {
+      SetScrollTop(true);
+    } else {
+      SetScrollTop(false);
+    }
+  });
   return (
     <div>
       <header className=" w-full min-h-screen gradient relative flex flex-col items-center pb-10">
         <BgHeader />
-        <nav className="flex w-full min-h-[36px] text-white items-center p-4 sm:p-8 justify-center z-[2]">
+        <nav className={`navHeader flex w-full min-h-[36px] text-white items-center p-4 sm:p-4 justify-center z-[2] ${scrollTop ?'menuFixed' : `menuRelative`}`}>
           <div className="container flex w-full max-w-5xl justify-between">
             <div className="logo w-10 h-10 text-[#131b23] bg-white rounded-full flex justify-center items-center font-bold">
               VR
@@ -27,7 +42,10 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  <a className=" hover:opacity-75 transition-opacity" href="#">
+                  <a
+                    className=" hover:opacity-75 transition-opacity"
+                    href="#about"
+                  >
                     about
                   </a>
                 </li>
@@ -69,7 +87,7 @@ const Home = () => {
             </div>
           </div>
         </nav>
-        <div className="content-header flex flex-col justify-center items-center sm:mt-9 gap-2 z-[2] relative">
+        <div className={`content-header flex flex-col justify-center items-center sm:mt-9 gap-2 z-[2] relative ${scrollTop ?'top-14 sm:pb-24 ' : ``}`}>
           <div className="w-full h-full absolute top-0 left-0 hidden sm:flex">
             <div className="">
               <BsCursorFill className="text-white absolute top-24 right-28 z-20 " />
@@ -113,106 +131,124 @@ const Home = () => {
         </div>
       </header>
       <main className="w-full min-h-screen">
-        <div className="about-area w-full min-h-screen px-6 py-10 sm:px-10 sm:py-14  flex ">
-          <div className="text flex flex-col gap-1">
-            <h4 className=" text-base sm:text-lg"> Sobre Mim</h4>
-            <div className="content-principal max-w-xl">
-              <h3 className="text-xl sm:text-3xl font-medium">
-                Um pouco sobre minha jornada no mundo do desenvolvimento
-              </h3>
-              <p className="text-xs sm:text-sm mt-3">
-                Desde 2017, estou envolvido no mundo do desenvolvimento de{" "}
-                <b>frontend</b>, conciliando meu negócio próprio com o objetivo
-                de ter uma oportunidade como desenvolvedor profissional.
-              </p>
-              <p className="text-xs sm:text-sm mt-3">
-                Hoje me encontro 100% focado e me dedicando diariamente a
-                alcançar esse sonho enquanto continuo aperfeiçoando minhas
-                habilidades em{" "}
-                <b>HTML, CSS, JavaScript, TypeScript, React JS e NodeJS</b>.
-              </p>
+        <div
+          id="about"
+          className="about-area w-full min-h-screen px-6 py-10 sm:px-10 sm:py-14  flex justify-center "
+        >
+          <div className="container flex ">
+            <div className="text flex flex-col gap-1">
+              <h4 className=" text-base sm:text-lg"> Sobre Mim</h4>
+              <div className="content-principal max-w-xl">
+                <h3 className="text-xl sm:text-3xl font-medium">
+                  Um pouco sobre minha jornada no mundo do desenvolvimento
+                </h3>
+                <p className="text-xs sm:text-sm mt-3">
+                  Desde 2017, estou envolvido no mundo do desenvolvimento de{" "}
+                  <b>frontend</b>, conciliando meu negócio próprio com o
+                  objetivo de ter uma oportunidade como desenvolvedor
+                  profissional.
+                </p>
+                <p className="text-xs sm:text-sm mt-3">
+                  Hoje me encontro 100% focado e me dedicando diariamente a
+                  alcançar esse sonho enquanto continuo aperfeiçoando minhas
+                  habilidades em{" "}
+                  <b>HTML, CSS, JavaScript, TypeScript, React JS e NodeJS</b>.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="cards flex flex-col flex-wrap justify-center  sm:flex-row w-full mt-14 gap-4  items-center">
-            <div className=" card c1 flex flex-col p-3 py-5 gap-3  w-screen max-w-[320px] sm:max-w-[360px]  min-h-[255px] sm:min-h-[285px] border-2 sm:border-4 border-[#1f2a35] rounded-md">
-              <div className="header-card flex items-center gap-2">
-                <MdDesignServices className="text-5xl" />
-                <div className="title-card">
-                  <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-red-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
-                    HTML e CSS
-                  </h1>
+            <div className="cards flex flex-col flex-wrap justify-center  sm:flex-row w-full mt-14 gap-4  items-center">
+              <div className=" card c1 flex flex-col p-3 py-5 gap-3  w-screen max-w-[320px] sm:max-w-[360px]  min-h-[255px] sm:min-h-[285px] border-2 sm:border-4 border-[#1f2a35] rounded-md">
+                <div className="header-card flex items-center gap-2">
+                  <MdDesignServices className="text-5xl" />
+                  <div className="title-card">
+                    <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-red-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
+                      HTML e CSS
+                    </h1>
+                  </div>
+                </div>
+                <div className="text flex flex-col gap-4">
+                  <span className="text-sm font-semibold opacity-30">
+                    &lt;h1&gt;{" "}
+                  </span>
+                  <p className="text-xs sm:text-sm border-l-2 border-black border-opacity-30 pl-4">
+                    Habilidades sólidas no desenvolvimento de sistemas web 100%
+                    responsivos e otimizadas, colocando em prática práticas como
+                    acessibilidade e CEO.
+                  </p>
+                  <span className="text-sm font-semibold opacity-30">
+                    &lt;/h1&gt;{" "}
+                  </span>
                 </div>
               </div>
-              <div className="text flex flex-col gap-4">
-                <span className="text-sm font-semibold opacity-30">
-                  &lt;h1&gt;{" "}
-                </span>
-                <p className="text-xs sm:text-sm border-l-2 border-black border-opacity-30 pl-4">
-                  Habilidades sólidas no desenvolvimento de sistemas web 100%
-                  responsivos e otimizadas, colocando em prática práticas como
-                  acessibilidade e CEO.
-                </p>
-                <span className="text-sm font-semibold opacity-30">
-                  &lt;/h1&gt;{" "}
-                </span>
-              </div>
-            </div>
-            <div className=" card c2 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4 border-[#1f2a35] rounded-md">
-              <div className="header-card flex items-center gap-2">
-                <MdDesignServices className="text-5xl" />
-                <div className="title-card">
-                  <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-green-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
-                    JavaScript
-                  </h1>
+              <div className=" card c2 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4 border-[#1f2a35] rounded-md">
+                <div className="header-card flex items-center gap-2">
+                  <MdDesignServices className="text-5xl" />
+                  <div className="title-card">
+                    <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-green-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
+                      JavaScript
+                    </h1>
+                  </div>
+                </div>
+                <div className="text flex flex-col gap-4">
+                  <span className="text-sm font-semibold opacity-30">
+                    &#123;
+                  </span>
+                  <p className="text-xs sm:text-sm border-l-2 border-black border-opacity-30 pl-4">
+                    Conhecimento consolidado nas ferramentas da linguagem, sendo
+                    capaz de criar aplicações 100% interativas e funcionais.
+                  </p>
+                  <span className="text-sm font-semibold opacity-30">
+                    &#125;
+                  </span>
                 </div>
               </div>
-              <div className="text flex flex-col gap-4">
-                <span className="text-sm font-semibold opacity-30">&#123;</span>
-                <p className="text-xs sm:text-sm border-l-2 border-black border-opacity-30 pl-4">
-                  Conhecimento consolidado nas ferramentas da linguagem, sendo
-                  capaz de criar aplicações 100% interativas e funcionais.
-                </p>
-                <span className="text-sm font-semibold opacity-30">&#125;</span>
-              </div>
-            </div>
 
-            <div className=" card c3 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4  border-[#1f2a35] rounded-md">
-              <div className="header-card flex items-center gap-2">
-                <MdDesignServices className="text-5xl" />
-                <div className="title-card">
-                  <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-blue-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
-                    ReactJS
-                  </h1>
+              <div className=" card c3 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4  border-[#1f2a35] rounded-md">
+                <div className="header-card flex items-center gap-2">
+                  <MdDesignServices className="text-5xl" />
+                  <div className="title-card">
+                    <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-blue-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
+                      ReactJS
+                    </h1>
+                  </div>
+                </div>
+                <div className="text flex flex-col gap-4">
+                  <span className="text-sm font-semibold opacity-30">
+                    &#123;
+                  </span>
+                  <p className="text-xs sm:text-sm border-l-2 border-black border-opacity-30 pl-4">
+                    Tenho experiência em utilizar diversas ferramentas do
+                    ecossistema do React como os hooks para criar aplicações web
+                    completas e escaláveis.
+                  </p>
+                  <span className="text-sm font-semibold opacity-30">
+                    &#125;
+                  </span>
                 </div>
               </div>
-              <div className="text flex flex-col gap-4">
-                <span className="text-sm font-semibold opacity-30">&#123;</span>
-                <p className="text-xs sm:text-sm border-l-2 border-black border-opacity-30 pl-4">
-                  Tenho experiência em utilizar diversas ferramentas do
-                  ecossistema do React como os hooks para criar aplicações web
-                  completas e escaláveis.
-                </p>
-                <span className="text-sm font-semibold opacity-30">&#125;</span>
-              </div>
-            </div>
 
-            <div className=" card c4 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4  border-[#1f2a35] rounded-md">
-              <div className="header-card flex items-center gap-2">
-                <MdDesignServices className="text-5xl" />
-                <div className="title-card">
-                  <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-orange-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
-                    NodeJS
-                  </h1>
+              <div className=" card c4 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4  border-[#1f2a35] rounded-md">
+                <div className="header-card flex items-center gap-2">
+                  <MdDesignServices className="text-5xl" />
+                  <div className="title-card">
+                    <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-orange-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
+                      NodeJS
+                    </h1>
+                  </div>
                 </div>
-              </div>
-              <div className="text flex flex-col gap-4 justify-center">
-                <span className="text-sm font-semibold opacity-30">&#123;</span>
-                <p className="text-xs sm:text-sm border-l-2 border-black border-opacity-30 pl-4">
-                  Tenho experiência em utilizar diversas ferramentas do
-                  ecossistema do React como os hooks para criar aplicações web
-                  completas e escaláveis.
-                </p>
-                <span className="text-sm font-semibold opacity-30">&#125;</span>
+                <div className="text flex flex-col gap-4 justify-center">
+                  <span className="text-sm font-semibold opacity-30">
+                    &#123;
+                  </span>
+                  <p className="text-xs sm:text-sm border-l-2 border-black border-opacity-30 pl-4">
+                    Tenho experiência em utilizar diversas ferramentas do
+                    ecossistema do React como os hooks para criar aplicações web
+                    completas e escaláveis.
+                  </p>
+                  <span className="text-sm font-semibold opacity-30">
+                    &#125;
+                  </span>
+                </div>
               </div>
             </div>
           </div>

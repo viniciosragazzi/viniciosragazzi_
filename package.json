@@ -9,10 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "react": "^18.2.0",
+    "react-animation-on-scroll": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
-    "react-router-dom": "^6.5.0"
+    "react-router-dom": "^6.5.0",
+    "react-scroll-animation": "^1.0.3",
+    "scrollreveal": "^4.0.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
