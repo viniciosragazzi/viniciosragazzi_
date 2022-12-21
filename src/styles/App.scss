@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    background: rgb(31, 43, 55);
+    background: linear-gradient(150deg, rgba(31, 43, 55, 1) 0%, rgba(19, 27, 35, 1) 32%, rgba(19, 27, 35, 1) 100%);
+}
+
+.lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    margin: auto;
+    width: 90vw;
+}
+
+.line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.line::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15vh;
+    width: 100%;
+    top: -50%;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+    animation: drop 7s 0s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+}
+
+.line:nth-child(1) {
+    margin-left: -25%;
+}
+
+.line:nth-child(1)::after {
+    animation-delay: 2s;
+}
+
+.line:nth-child(3) {
+    margin-left: 25%;
+}
+
+.line:nth-child(3)::after {
+    animation-delay: 2.5s;
+}
+
+@keyframes drop {
+    0% {
+        top: -50%;
+    }
+    100% {
+        top: 110%;
+    }
+}
+
+.about-area {
+    background: rgb(184, 184, 184);
+    background: linear-gradient(
+        66deg,
+        rgba(184, 184, 184, 1) 0%,
+        rgba(255, 255, 255, 1) 43%,
+        rgba(255, 255, 255, 1) 100%
+    );
+}
+
+@media screen and (max-width: 1200px) {
+    .about-area {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 815px) {
+  
+}
+@media screen and (max-width: 360px) {
+    .card {
+        max-width: 260px;
+    }
+}
