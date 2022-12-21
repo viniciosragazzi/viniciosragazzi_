@@ -109,6 +109,11 @@ header {
           animation: reveal 0.5s ease forwards;
 }
 
+@media screen and (min-width: 1440px) {
+  #about .container {
+    flex-direction: column;
+  }
+}
 @media screen and (max-width: 1200px) {
   .about-area .container {
     flex-direction: column;

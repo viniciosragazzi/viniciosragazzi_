@@ -6,6 +6,10 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 import { BsCursorFill } from "react-icons/bs";
+import { AiOutlineClose } from "react-icons/ai";
+
+import { HiBars3 } from "react-icons/hi2";
+
 import { MdDesignServices } from "react-icons/md";
 
 import Avatar from "../images/avatar-min.png";
@@ -17,6 +21,7 @@ const Home = () => {
   }, []);
   const [pageY, setPageY] = useState(0);
   const [scrollTop, SetScrollTop] = useState(false);
+  const [closeMenu, SetCloseMenu] = useState(true);
 
   document.addEventListener("scroll", () => {
     if (window.scrollY >= 100) {
@@ -30,23 +35,42 @@ const Home = () => {
       <header className=" w-full min-h-screen gradient relative flex flex-col items-center pb-10">
         <BgHeader />
         <nav
-          className={`navHeader flex w-full min-h-[36px] text-white items-center p-4 sm:p-4 justify-center z-[2] ${
-            scrollTop ? "menuFixed" : `menuRelative`
+          className={`navHeader flex w-full min-h-[36px] text-white items-center p-4 sm:p-4 justify-center z-[998] ${
+            scrollTop && closeMenu ? "menuFixed" : `menuRelative`
           }`}
         >
-          <div className="container flex w-full max-w-5xl justify-between">
+          <div className="container flex w-full max-w-5xl justify-between items-center">
             <div className="logo w-10 h-10 text-[#131b23] bg-white rounded-full flex justify-center items-center font-bold">
               VR
             </div>
-            <div className="menu  justify-center items-center flex-1 relative hidden sm:flex">
-              <ul className="flex gap-14 uppercase text-sm">
+            <div
+              className={`menu  justify-center items-center flex-1 gap-6 sm:gap-0   flex flex-col  sm:flex-row  h-screen sm:h-full fixed sm:relative top-0 left-0 w-full bg-[#1B2631] sm:bg-transparent z-[900] ${
+                closeMenu ? "translate-y-[-100vh]" : "translate-y-[0]"
+              } transition-transform`}
+            >
+              <AiOutlineClose
+                onClick={() => {
+                  SetCloseMenu(!closeMenu);
+                }}
+                className="sm:hidden absolute top-0 right-0 m-8 text-xl"
+              />
+              <ul className="flex gap-14 uppercase text-sm flex-col sm:flex-row">
                 <li>
-                  <a className=" hover:opacity-75 transition-opacity" href="#">
+                  <a
+                    onClick={() => {
+                      SetCloseMenu(true);
+                    }}
+                    className=" hover:opacity-75 transition-opacity"
+                    href="#"
+                  >
                     home
                   </a>
                 </li>
                 <li>
                   <a
+                    onClick={() => {
+                      SetCloseMenu(true);
+                    }}
                     className=" hover:opacity-75 transition-opacity"
                     href="#about"
                   >
@@ -54,17 +78,29 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  <a className=" hover:opacity-75 transition-opacity" href="#">
+                  <a
+                    onClick={() => {
+                      SetCloseMenu(true);
+                    }}
+                    className=" hover:opacity-75 transition-opacity"
+                    href="#"
+                  >
                     explorer
                   </a>
                 </li>
                 <li>
-                  <a className=" hover:opacity-75 transition-opacity" href="#">
+                  <a
+                    onClick={() => {
+                      SetCloseMenu(true);
+                    }}
+                    className=" hover:opacity-75 transition-opacity"
+                    href="#"
+                  >
                     contact
                   </a>
                 </li>
               </ul>
-              <div className="socials flex absolute right-0">
+              <div className="socials flex relative top-6 sm:top-0 sm:absolute sm:right-0">
                 <ul>
                   <li className="flex gap-3 text-2xl">
                     <a
@@ -89,62 +125,70 @@ const Home = () => {
                 </ul>
               </div>
             </div>
+            <HiBars3
+              className="sm:hidden"
+              onClick={() => {
+                SetCloseMenu(!closeMenu);
+              }}
+            />
           </div>
         </nav>
-        <div
-          className={`content-header flex flex-col justify-center items-center sm:mt-9 gap-2 z-[100] relative ${
-            scrollTop ? "top-14 sm:pb-24 " : ``
-          }`}
-        >
-          <div className="w-full h-full absolute top-0 left-0 hidden -z-10 sm:flex">
-            <div className="">
-              <BsCursorFill className="text-white absolute top-24 right-28 z-20 " />
-              <span className="text-white px-3 py-1 rounded-md absolute top-20 right-4 z-10 bg-[#1b2631]">
-                Front End
-              </span>
+        <div className="h-screen flex flex-col 2xl:justify-center">
+          <div
+            className={`content-header flex flex-col justify-center items-center sm:mt-9 gap-2 z-[100] relative ${
+              scrollTop && closeMenu ? "top-14 sm:pb " : ``
+            }`}
+          >
+            <div className="w-full h-full absolute top-0 left-0 hidden -z-10 sm:flex">
+              <div className="">
+                <BsCursorFill className="text-white absolute top-24 right-28 z-20 " />
+                <span className="text-white px-3 py-1 rounded-md absolute top-20 right-4 z-10 bg-[#1b2631]">
+                  Front End
+                </span>
+              </div>
+              <div className="">
+                <BsCursorFill className="text-white absolute top-40 left-0 z-20 " />
+                <span className="text-white px-3 py-1 rounded-md absolute top-36 left-4 z-10 bg-[#1b2631]">
+                  Web Designer
+                </span>
+              </div>
             </div>
-            <div className="">
-              <BsCursorFill className="text-white absolute top-40 left-0 z-20 " />
-              <span className="text-white px-3 py-1 rounded-md absolute top-36 left-4 z-10 bg-[#1b2631]">
-                Web Designer
-              </span>
+            <div className="avatar w-full h-full max-w-[130px] sm:max-w-[150px] object-cover relative bg-[#1b2631] rounded-full overflow-hidden ">
+              <img src={Avatar} alt="avatar" className="w-[120%] scale-125" />
             </div>
-          </div>
-          <div className="avatar w-full h-full max-w-[130px] sm:max-w-[150px] object-cover relative bg-[#1b2631] rounded-full overflow-hidden ">
-            <img src={Avatar} alt="avatar" className="w-[120%] scale-125" />
-          </div>
-          <div className="content flex flex-col text-center gap-1 max-w-2xl p-4 sm:p-0">
-            <h2 className="text-white font-semibold  text-xl sm:text-2xl">
-              Vinicios Ragazzi
-            </h2>
-            <p className="text-xs font-medium text-[#737d8b]">
-              Desenvolvedor FrontEnd
-            </p>
-            <h1 className="text-white text-2xl sm:text-5xl mt-2 text-center  font-semibold sm:mt-6">
-              Construindo o futuro da web, um pixel de cada vez.
-            </h1>
-            <p className="text-[#737d8b] text-xs mt-1 sm:mt-4">
-              Apaixonado por transformar ideias em realidade através do código
-              focando em criar experiências incríveis, seja através de design
-              atraente ou soluções de tecnologia inovadoras.{" "}
-            </p>
+            <div className="content flex flex-col text-center gap-1 max-w-2xl p-4 sm:p-0">
+              <h2 className="text-white font-semibold  text-xl sm:text-2xl">
+                Vinicios Ragazzi
+              </h2>
+              <p className="text-xs font-medium text-[#737d8b]">
+                Desenvolvedor FrontEnd
+              </p>
+              <h1 className="text-white text-2xl sm:text-5xl mt-2 text-center  font-semibold sm:mt-6">
+                Construindo o futuro da web, um pixel de cada vez.
+              </h1>
+              <p className="text-[#737d8b] text-xs mt-1 sm:mt-4">
+                Apaixonado por transformar ideias em realidade através do código
+                focando em criar experiências incríveis, seja através de design
+                atraente ou soluções de tecnologia inovadoras.{" "}
+              </p>
 
-            <a
-              href="https://cdn.discordapp.com/attachments/524765307081064452/1055159207340552212/Nome_Marcos_Vinicios_Ragazzi_Araujo_Data_de_Nascimento_24022001_Naturalidade_Nova_Iguacu_RJ_-_Brasil_Disponibilidade_Periodo_Integral_Contato_21_98337-3765_O_Email_viniciosragazzzigmail.com_LinkedIn_viniciosra.pdf"
-              className="button px-4 py-2 self-center rounded-md mt-4 text-xs sm:text-sm hover:bg-[#1b2631] cursor-pointer hover:text-white transition-all font-semibold bg-white max-w-[200px]"
-              download
-            >
-              Download CV
-            </a>
+              <a
+                href="https://cdn.discordapp.com/attachments/524765307081064452/1055159207340552212/Nome_Marcos_Vinicios_Ragazzi_Araujo_Data_de_Nascimento_24022001_Naturalidade_Nova_Iguacu_RJ_-_Brasil_Disponibilidade_Periodo_Integral_Contato_21_98337-3765_O_Email_viniciosragazzzigmail.com_LinkedIn_viniciosra.pdf"
+                className="button px-4 py-2 self-center rounded-md mt-4 text-xs sm:text-sm hover:bg-[#1b2631] cursor-pointer hover:text-white transition-all font-semibold bg-white max-w-[200px]"
+                download
+              >
+                Download CV
+              </a>
+            </div>
           </div>
         </div>
       </header>
       <main className="w-full min-h-screen">
         <div
           id="about"
-          className="about-area w-full min-h-screen px-6 py-10 sm:px-10 sm:py-14  flex justify-center "
+          className="about-area w-full min-h-screen px-6 sm:px-10 sm:py-14  flex justify-center "
         >
-          <div className="container flex ">
+          <div className="container flex  py-24">
             <div className="text flex flex-col gap-1">
               <h4 className=" text-base sm:text-lg"> Sobre Mim</h4>
               <div className="content-principal max-w-xl">
