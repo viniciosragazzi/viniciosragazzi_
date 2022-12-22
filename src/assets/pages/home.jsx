@@ -13,6 +13,9 @@ import { HiBars3 } from "react-icons/hi2";
 
 import { MdDesignServices } from "react-icons/md";
 import Avatar from "../images/avatar-min.png";
+
+import Carousel from "react-elastic-carousel";
+
 const Home = () => {
   useEffect(() => {
     ScrollReveal().reveal(".about-area");
@@ -30,17 +33,24 @@ const Home = () => {
       SetScrollTop(false);
     }
   });
+  document.addEventListener("click", () => {
+    const cl = document.querySelectorAll(".card-project");
 
+    console.log(cl[5].getBoundingClientRect());
+  });
   const [translate, setTranslate] = useState(0);
-  const prevFunc = () => {
-    const cl = document.querySelectorAll('.card-project')
-    console.log(372 * cl.length);
-    setTranslate(translate - 375);
-    console.log(translate);
-  };
   const nextFunc = () => {
+    const cl = document.querySelectorAll(".card-project");
+
+    console.log(cl[5].getBoundingClientRect());
+    setTranslate(translate - 375);
+  };
+  const prevFunc = () => {
+    const cl = document.querySelectorAll(".card-project");
+
+    console.log(cl[5].getBoundingClientRect());
+
     setTranslate(translate + 375);
-    console.log(translate);
   };
   return (
     <div>
@@ -66,7 +76,7 @@ const Home = () => {
                 onClick={() => {
                   SetCloseMenu(!closeMenu);
                 }}
-                className="sm:hidden absolute top-0 right-0 m-8 text-xl"
+                className="sm:hidden absolute top-0 right-0 m-8 text-xl cursor-pointer"
               />
               <ul className="flex gap-14 uppercase text-xs flex-col sm:flex-row">
                 <li>
@@ -143,7 +153,7 @@ const Home = () => {
               </div>
             </div>
             <HiBars3
-              className="sm:hidden"
+              className="sm:hidden cursor-pointer"
               onClick={() => {
                 SetCloseMenu(!closeMenu);
               }}
@@ -334,28 +344,49 @@ const Home = () => {
               dias.
             </p>
           </div>
-          <div className="carousel w-full mt-5 flex  overflow-hidden">
-            <MdNavigateBefore
-              className="absolute text-white top-[50%] left-0 text-6xl -translate-y-1/2 opacity-50"
-              onClick={() =>nextFunc() }
-            />
-
-            <MdNavigateNext
-              className="absolute text-white top-[50%] right-0 text-6xl -translate-y-1/2  opacity-50"
-              onClick={() => prevFunc()}
-            />
-            <div
-              className={`carousel-list flex  gap-3 relative transition-transform`}
-              style={{ transform: `translateX(${translate}px)` }}
-       
+          <div className="carousel w-full mt-16 flex  overflow-hidden">
+            <Carousel
+              itemsToShow={2}
+              itemPadding={[5, 5]}
+              breakPoints={[
+                { width: 1, itemsToShow: 1 },
+                {
+                  width: 550,
+                  itemsToShow: 2,
+                  itemsToScroll: 1,
+                  pagination: false,
+                },
+                { width: 850, itemsToShow: 3 },
+                { width: 1150, itemsToShow: 4, itemsToScroll: 1 },
+                { width: 1450, itemsToShow: 5 },
+                { width: 1750, itemsToShow: 6 },
+              ]}
             >
-              <div className="card-project min-w-[360px]  h-[320px] bg-red-600"></div>
-              <div className="card-project min-w-[360px]  h-[320px] bg-green-600"></div>
-              <div className="card-project min-w-[360px]  h-[320px] bg-yellow-600"></div>
-              <div className="card-project min-w-[360px]  h-[320px] bg-red-600"></div>
-              <div className="card-project min-w-[360px]  h-[320px] bg-blue-600"></div>
-              <div className="card-project min-w-[360px]  h-[320px] bg-red-600"></div>
-            </div>
+              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
+                1
+              </div>
+              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
+                2
+              </div>
+              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
+                3
+              </div>
+              <div className="item w-full min-w-[320px] h-[360px]  flex justify-center items-center font-bold text-3xl">
+                4
+              </div>
+              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
+                1
+              </div>
+              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
+                2
+              </div>
+              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
+                3
+              </div>
+              <div className="item w-full min-w-[320px] h-[360px]  flex justify-center items-center font-bold text-3xl">
+                4
+              </div>
+            </Carousel>
           </div>
         </div>
       </main>
