@@ -6,12 +6,12 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 import { BsCursorFill } from "react-icons/bs";
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 
 import { HiBars3 } from "react-icons/hi2";
 
 import { MdDesignServices } from "react-icons/md";
-
 import Avatar from "../images/avatar-min.png";
 const Home = () => {
   useEffect(() => {
@@ -30,6 +30,18 @@ const Home = () => {
       SetScrollTop(false);
     }
   });
+
+  const [translate, setTranslate] = useState(0);
+  const prevFunc = () => {
+    const cl = document.querySelectorAll('.card-project')
+    console.log(372 * cl.length);
+    setTranslate(translate - 375);
+    console.log(translate);
+  };
+  const nextFunc = () => {
+    setTranslate(translate + 375);
+    console.log(translate);
+  };
   return (
     <div>
       <header className=" w-full min-h-screen gradient relative flex flex-col items-center pb-10">
@@ -44,8 +56,10 @@ const Home = () => {
               VR
             </div>
             <div
-              className={`menu  justify-center items-center flex-1 gap-6 sm:gap-0   flex flex-col  sm:flex-row  h-screen sm:h-full fixed sm:relative top-0 left-0 w-full bg-[#1B2631] sm:bg-transparent z-[900] ${
-                closeMenu ? "translate-y-[-100vh] sm:translate-y-[0]" : "translate-y-[0]"
+              className={`menu   justify-center items-center flex-1 gap-6 sm:gap-0   flex flex-col  sm:flex-row  h-screen sm:h-full fixed sm:relative top-0 left-0 w-full bg-[#1B2631] sm:bg-transparent  z-[900] ${
+                closeMenu
+                  ? "translate-y-[-100vh] sm:translate-y-[0]"
+                  : "translate-y-[0]"
               } transition-transform`}
             >
               <AiOutlineClose
@@ -54,7 +68,7 @@ const Home = () => {
                 }}
                 className="sm:hidden absolute top-0 right-0 m-8 text-xl"
               />
-              <ul className="flex gap-14 uppercase text-sm flex-col sm:flex-row">
+              <ul className="flex gap-14 uppercase text-xs flex-col sm:flex-row">
                 <li>
                   <a
                     onClick={() => {
@@ -105,19 +119,22 @@ const Home = () => {
                   <li className="flex gap-3 text-2xl">
                     <a
                       className=" cursor-pointer hover:text-[#989daa] hover:scale-90 transition-all"
-                      href="#"
+                      href="https://www.linkedin.com/in/viniciosragazzi/"
+                      target="_blank"
                     >
                       <RiLinkedinBoxFill />
                     </a>
                     <a
                       className=" cursor-pointer hover:text-[#989daa] hover:scale-90 transition-all"
-                      href="#"
+                      href="https://github.com/viniciosragazzi"
+                      target="_blank"
                     >
                       <RiGithubFill />
                     </a>
                     <a
                       className=" cursor-pointer hover:text-[#989daa] hover:scale-90 transition-all"
-                      href="#"
+                      href="https://www.instagram.com/viniciosragazzi_/"
+                      target="_blank"
                     >
                       <RiInstagramFill />
                     </a>
@@ -136,7 +153,7 @@ const Home = () => {
         <div className="h-screen flex flex-col 2xl:justify-center">
           <div
             className={`content-header flex flex-col justify-center items-center sm:mt-9 gap-2 z-[100] relative ${
-              scrollTop && closeMenu ? "top-14 sm:pb " : ``
+              scrollTop && closeMenu ? "top-14" : ``
             }`}
           >
             <div className="w-full h-full absolute top-0 left-0 hidden -z-10 sm:flex">
@@ -192,7 +209,7 @@ const Home = () => {
             <div className="text flex flex-col gap-1">
               <h4 className=" text-base sm:text-lg"> Sobre Mim</h4>
               <div className="content-principal max-w-xl">
-                <h3 className="text-xl sm:text-3xl font-medium">
+                <h3 className="text-xl sm:text-3xl font-semibold">
                   Um pouco sobre minha jornada no mundo do desenvolvimento
                 </h3>
                 <p className="text-xs sm:text-sm mt-3">
@@ -209,12 +226,12 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <div className="cards flex flex-col flex-wrap justify-center  sm:flex-row w-full mt-14 gap-4  items-center">
-              <div className=" card c1 flex flex-col p-3 py-5 gap-3  w-screen max-w-[320px] sm:max-w-[360px]  min-h-[255px] sm:min-h-[285px] border-2 sm:border-4 border-[#1f2a35] rounded-md">
+            <div className="cards flex flex-col flex-wrap justify-center  sm:flex-row w-full mt-14 sm:mt-6 gap-4  items-center">
+              <div className=" card c1 flex flex-col p-3 py-5 gap-3  w-screen max-w-[320px] sm:max-w-[360px]  min-h-[255px] border-2 sm:border-4 border-[#1f2a35] rounded-md">
                 <div className="header-card flex items-center gap-2">
-                  <MdDesignServices className="text-5xl" />
+                  <MdDesignServices className="text-4xl" />
                   <div className="title-card">
-                    <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-red-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
+                    <h1 className="text-2xl sm:text-2xl font-bold relative after:w-full after:h-[5px] after:bg-red-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
                       HTML e CSS
                     </h1>
                   </div>
@@ -233,11 +250,11 @@ const Home = () => {
                   </span>
                 </div>
               </div>
-              <div className=" card c2 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4 border-[#1f2a35] rounded-md">
+              <div className=" card c2 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] border-2 sm:border-4 border-[#1f2a35] rounded-md">
                 <div className="header-card flex items-center gap-2">
-                  <MdDesignServices className="text-5xl" />
+                  <MdDesignServices className="text-4xl" />
                   <div className="title-card">
-                    <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-green-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
+                    <h1 className="text-2xl sm:text-2xl font-bold relative after:w-full after:h-[5px] after:bg-green-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
                       JavaScript
                     </h1>
                   </div>
@@ -256,11 +273,11 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className=" card c3 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4  border-[#1f2a35] rounded-md">
+              <div className=" card c3 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] border-2 sm:border-4  border-[#1f2a35] rounded-md">
                 <div className="header-card flex items-center gap-2">
-                  <MdDesignServices className="text-5xl" />
+                  <MdDesignServices className="text-4xl" />
                   <div className="title-card">
-                    <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-blue-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
+                    <h1 className="text-2xl sm:text-2xl font-bold relative after:w-full after:h-[5px] after:bg-blue-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
                       ReactJS
                     </h1>
                   </div>
@@ -280,11 +297,11 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className=" card c4 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] sm:min-h-[285px] border-2 sm:border-4  border-[#1f2a35] rounded-md">
+              <div className=" card c4 flex flex-col p-3 py-5 gap-3  w-screen  max-w-[320px] sm:max-w-[360px]   min-h-[255px] border-2 sm:border-4  border-[#1f2a35] rounded-md">
                 <div className="header-card flex items-center gap-2">
-                  <MdDesignServices className="text-5xl" />
+                  <MdDesignServices className="text-4xl" />
                   <div className="title-card">
-                    <h1 className="text-2xl sm:text-3xl font-bold relative after:w-full after:h-[5px] after:bg-orange-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
+                    <h1 className="text-2xl sm:text-2xl font-bold relative after:w-full after:h-[5px] after:bg-orange-400 after:absolute after:top-6 after:z-[-1] z-20 after:left-0">
                       NodeJS
                     </h1>
                   </div>
@@ -303,6 +320,41 @@ const Home = () => {
                   </span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="projects w-full flex min-h-[50vh] px-6 py-10 sm:px-10 sm:py-14 flex-col relative">
+          <div className="header flex flex-col gap-2">
+            <h1 className="text-xl sm:text-3xl text-white font-semibold">
+              Principais Projetos{" "}
+            </h1>
+
+            <p className=" text-sm text-white">
+              Algums dos principais projetos que venho desenvolvendo nos ultimos
+              dias.
+            </p>
+          </div>
+          <div className="carousel w-full mt-5 flex  overflow-hidden">
+            <MdNavigateBefore
+              className="absolute text-white top-[50%] left-0 text-6xl -translate-y-1/2 opacity-50"
+              onClick={() =>nextFunc() }
+            />
+
+            <MdNavigateNext
+              className="absolute text-white top-[50%] right-0 text-6xl -translate-y-1/2  opacity-50"
+              onClick={() => prevFunc()}
+            />
+            <div
+              className={`carousel-list flex  gap-3 relative transition-transform`}
+              style={{ transform: `translateX(${translate}px)` }}
+       
+            >
+              <div className="card-project min-w-[360px]  h-[320px] bg-red-600"></div>
+              <div className="card-project min-w-[360px]  h-[320px] bg-green-600"></div>
+              <div className="card-project min-w-[360px]  h-[320px] bg-yellow-600"></div>
+              <div className="card-project min-w-[360px]  h-[320px] bg-red-600"></div>
+              <div className="card-project min-w-[360px]  h-[320px] bg-blue-600"></div>
+              <div className="card-project min-w-[360px]  h-[320px] bg-red-600"></div>
             </div>
           </div>
         </div>
