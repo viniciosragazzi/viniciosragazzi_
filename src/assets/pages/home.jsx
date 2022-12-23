@@ -330,7 +330,7 @@ const Home = () => {
               dias.
             </p>
           </div>
-          <div className="carousel w-full mt-16 flex  overflow-hidden">
+          <div className="carousel w-full mt-16 flex  overflow-hidden mb-8">
             <Swiper
               // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -367,6 +367,12 @@ const Home = () => {
               ...
             </Swiper>
           </div>
+          <a
+            href="https://github.com/viniciosragazzi?tab=repositories"
+            className="button px-4 py-2 self-center rounded-md mt-4 text-xs sm:text-sm hover:bg-[#1b2631] cursor-pointer hover:text-white transition-all font-semibold bg-white max-w-[200px]"
+          >
+            Ver todos
+          </a>
         </div>
       </main>
     </div>
