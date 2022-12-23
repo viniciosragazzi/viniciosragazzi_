@@ -6,7 +6,6 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 import { BsCursorFill } from "react-icons/bs";
-import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 
 import { HiBars3 } from "react-icons/hi2";
@@ -14,7 +13,13 @@ import { HiBars3 } from "react-icons/hi2";
 import { MdDesignServices } from "react-icons/md";
 import Avatar from "../images/avatar-min.png";
 
-import Carousel from "react-elastic-carousel";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const Home = () => {
   useEffect(() => {
@@ -22,7 +27,6 @@ const Home = () => {
 
     ScrollReveal().reveal(".content-header", { delay: 2000 });
   }, []);
-  const [pageY, setPageY] = useState(0);
   const [scrollTop, SetScrollTop] = useState(false);
   const [closeMenu, SetCloseMenu] = useState(true);
 
@@ -33,25 +37,7 @@ const Home = () => {
       SetScrollTop(false);
     }
   });
-  document.addEventListener("click", () => {
-    const cl = document.querySelectorAll(".card-project");
 
-    console.log(cl[5].getBoundingClientRect());
-  });
-  const [translate, setTranslate] = useState(0);
-  const nextFunc = () => {
-    const cl = document.querySelectorAll(".card-project");
-
-    console.log(cl[5].getBoundingClientRect());
-    setTranslate(translate - 375);
-  };
-  const prevFunc = () => {
-    const cl = document.querySelectorAll(".card-project");
-
-    console.log(cl[5].getBoundingClientRect());
-
-    setTranslate(translate + 375);
-  };
   return (
     <div>
       <header className=" w-full min-h-screen gradient relative flex flex-col items-center pb-10">
@@ -345,48 +331,41 @@ const Home = () => {
             </p>
           </div>
           <div className="carousel w-full mt-16 flex  overflow-hidden">
-            <Carousel
-              itemsToShow={2}
-              itemPadding={[5, 5]}
-              breakPoints={[
-                { width: 1, itemsToShow: 1 },
-                {
-                  width: 550,
-                  itemsToShow: 2,
-                  itemsToScroll: 1,
-                  pagination: false,
+            <Swiper
+              // install Swiper modules
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={30}
+              breakpoints={{
+                // when window width is >= 640px
+                640: {
+                  width: 640,
+                  slidesPerView: 1,
                 },
-                { width: 850, itemsToShow: 3 },
-                { width: 1150, itemsToShow: 4, itemsToScroll: 1 },
-                { width: 1450, itemsToShow: 5 },
-                { width: 1750, itemsToShow: 6 },
-              ]}
+                // when window width is >= 768px
+                768: {
+                  width: 768,
+                  slidesPerView: 2,
+                },
+              }}
+              navigation
+              pagination={{ clickable: true }}
+              onSwiper={(swiper) => console.log(swiper)}
+              onSlideChange={() => console.log("slide change")}
             >
-              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
-                1
-              </div>
-              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
-                2
-              </div>
-              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
-                3
-              </div>
-              <div className="item w-full min-w-[320px] h-[360px]  flex justify-center items-center font-bold text-3xl">
-                4
-              </div>
-              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
-                1
-              </div>
-              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
-                2
-              </div>
-              <div className="item w-full h-[360px] min-w-[320px]  flex justify-center items-center font-bold text-3xl">
-                3
-              </div>
-              <div className="item w-full min-w-[320px] h-[360px]  flex justify-center items-center font-bold text-3xl">
-                4
-              </div>
-            </Carousel>
+              <SwiperSlide className=" bg-[#1b2631]  shadow-lg flex justify-center items-center cursor-grab text-white min-h-[320px] ">
+                Slide 1
+              </SwiperSlide>
+              <SwiperSlide className=" bg-[#1b2631]  shadow-lg flex justify-center items-center cursor-grab text-white min-h-[320px] ">
+                Slide 2
+              </SwiperSlide>
+              <SwiperSlide className=" bg-[#1b2631]  shadow-lg flex justify-center items-center cursor-grab text-white min-h-[320px] ">
+                Slide 3
+              </SwiperSlide>
+              <SwiperSlide className=" bg-[#1b2631]  shadow-lg flex justify-center items-center cursor-grab text-white min-h-[320px] ">
+                Slide 4
+              </SwiperSlide>
+              ...
+            </Swiper>
           </div>
         </div>
       </main>

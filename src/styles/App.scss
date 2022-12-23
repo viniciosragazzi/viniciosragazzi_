@@ -153,36 +153,12 @@ header {
 }
 
 //Slide
-.rec-arrow{
-    background-color: #19232e !important;
 
-}
-.rec-arrow:hover{
-    background-color: #19232e !important;
-}
-.rec.rec-arrow:disabled {
-    visibility: hidden;
+
+.swiper-button-next, .swiper-button-prev{
+    color: #e3f1ff !important;
 }
 
-.rec-carousel-item:focus {
-    outline: none;
-    box-shadow: inset 0 0 1px 1px lightgrey;
-}
-
-button.rec-dot {
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 0 1px 3px #183049;
-}
-button.rec-dot_active {
-    background: #234263;
-}
-button.rec-dot:hover,
-button.rec-dot:active,
-button.rec-dot:focus {
-    box-shadow: 0 0 1px 3px #202d3b;
-}
-
-.carousel .item{
-    background-color: #1b2631;
-    color: white;
+.swiper-pagination-bullet-active{
+    background-color: #e3f1ff !important;
 }
